@@ -12,7 +12,7 @@ export function processedVideoFactory(
     id: uuid(),
     resolutions: [
       {
-        fileInfo: unprocessedVideo.fileInfo,
+        file: unprocessedVideo.file,
         id: uuid(),
         resolutionType: ResolutionType.LARGE,
       },

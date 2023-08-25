@@ -93,7 +93,7 @@ export function asyncTee<Input, E = Error>(
       .returnType<AsyncReturn<Input, E>>()
       .with({ type: 'ok', data: P._ }, async (value) => {
         const result = await callback((value as ReturnOK<Input>).data);
-        if (result.type === 'error') {
+        if (result?.type === 'error') {
           return result as ReturnError<E>;
         }
         return value as ReturnOK<Input>;

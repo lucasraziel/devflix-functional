@@ -1,7 +1,7 @@
 import { FileSaved } from '@fvsystem/commom';
 
 export type UnprocessedVideo = {
-  fileInfo: FileSaved;
+  file: FileSaved;
   id: UnprocessedVideoId;
 };
 
@@ -19,7 +19,7 @@ export type ProcessedVideoId = string;
 export type Subtitle = {
   id: SubtitleId;
   language: Language;
-  fileInfo: FileSaved;
+  file: FileSaved;
 };
 
 export type Language = string;
@@ -29,20 +29,20 @@ export type SubtitleId = string;
 export type Audio = {
   id: AudioId;
   language: Language;
-  fileInfo: FileSaved;
+  file: FileSaved;
 };
 
 export type AudioId = string;
 
 export type Resolution = {
   id: ResolutionId;
-  fileInfo: FileSaved;
+  file: FileSaved;
   resolutionType: ResolutionType;
 };
 
 export type ResolutionId = string;
 
-enum ResolutionType {
+export enum ResolutionType {
   SMALL = 'SMALL',
   MEDIUM = 'MEDIUM',
   LARGE = 'LARGE',

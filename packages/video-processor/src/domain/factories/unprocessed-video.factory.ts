@@ -4,7 +4,7 @@ import { v4 as uuid } from 'uuid';
 
 export function unprocessedVideoFactory(file: FileSaved): UnprocessedVideo {
   return {
-    fileInfo: file,
+    file: file,
     id: uuid(),
   };
 }
