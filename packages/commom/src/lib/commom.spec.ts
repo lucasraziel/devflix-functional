@@ -7,6 +7,8 @@ import {
   asyncTee,
   predicateToPassThrough,
   asyncPredicateToPassThrough,
+  deSync,
+  deSyncAsync,
 } from './commom';
 import { Async, AsyncReturn, Return } from './types';
 
@@ -207,5 +209,23 @@ describe('predicateToPassthrough', () => {
       type: 'error',
       error: new Error('error'),
     });
+  });
+});
+
+describe('deSync', () => {
+  function mock(b: number) {
+    return b * 2;
+  }
+
+  async function mockAsync(b: number) {
+    return b * 2;
+  }
+
+  it('should deSync mock Function', async () => {
+    await expect(deSync(mock)(Promise.resolve(2))).resolves.toBe(4);
+  });
+
+  it('should deSync mockAsync Function', async () => {
+    await expect(deSyncAsync(mockAsync)(Promise.resolve(2))).resolves.toBe(4);
   });
 });

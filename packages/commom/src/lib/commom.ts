@@ -143,3 +143,21 @@ export function asyncPredicateToPassThrough(errorMessage: string) {
 
   return predicateToPassThroughWithErrorMessageDefined;
 }
+
+export function deSync<T, D>(
+  fn: (value: T) => D,
+): (value: Async<T>) => Async<D> {
+  return async (value: Async<T>) => {
+    const result = await value;
+    return fn(result);
+  };
+}
+
+export function deSyncAsync<T, D>(
+  fn: (value: T) => Async<D>,
+): (value: Async<T>) => Async<D> {
+  return async (value: Async<T>) => {
+    const result = await value;
+    return fn(result);
+  };
+}

@@ -1,5 +1,5 @@
-import { SaveToStorage, asyncBind } from '@fvsystem/commom';
+import { SaveToStorage, asyncBind, deSyncAsync } from '@fvsystem/commom';
 
 export function saveFileToStorage(savetoStorageFunction: SaveToStorage) {
-  return asyncBind(savetoStorageFunction);
+  return deSyncAsync(asyncBind(savetoStorageFunction));
 }

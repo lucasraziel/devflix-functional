@@ -4,6 +4,7 @@ import { ProcessedVideo } from '../types/basic';
 import { saveProcessedFileToDatabase } from '../effects/save-processedFile-database';
 import { ProcessVideo } from '../types/workflows';
 import { processedVideoFactory } from '../factories/processed-video.factory';
+import { flow } from 'fp-ts/function';
 
 export const processVideoWorkflow = (
   generateDifferentResolutions: GenerateDifferenteResolutions,
@@ -12,10 +13,9 @@ export const processVideoWorkflow = (
   const saveProcessedFileComplete = saveProcessedFileToDatabase(
     saveProcessedVideoToDatabase,
   );
-  return async (unprocessedVideo) =>
-    saveProcessedFileComplete(
-      await generateDifferentResolutions(
-        processedVideoFactory(unprocessedVideo),
-      ),
-    );
+  return flow(
+    processedVideoFactory,
+    generateDifferentResolutions,
+    saveProcessedFileComplete,
+  );
 };

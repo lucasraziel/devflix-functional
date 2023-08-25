@@ -1,8 +1,8 @@
-import { SaveToDatabase, asyncTee } from '@fvsystem/commom';
+import { SaveToDatabase, asyncTee, deSyncAsync } from '@fvsystem/commom';
 import { ProcessedVideo } from '../types/basic';
 
 export function saveProcessedFileToDatabase(
   saveToDatabaseFunction: SaveToDatabase<ProcessedVideo>,
 ) {
-  return asyncTee(saveToDatabaseFunction);
+  return deSyncAsync(asyncTee(saveToDatabaseFunction));
 }
